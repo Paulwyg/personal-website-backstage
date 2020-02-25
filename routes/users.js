@@ -10,7 +10,9 @@ const config={
     client_id:'a40d545f729108175d8f',
     client_secret:'c4e662deba4e7bdef509389fbcf8ad680f73c0ce'
 };
+let redirectPath='http://localhost:8080/'
 router.get('/github/login',async (ctx)=>{
+    if(ctx.query.path) redirectPath=ctx.query.path
     var dataStr=(new Date()).valueOf();
     //重定向到认证接口,并配置参数
     var path="https://github.com/login/oauth/authorize";
@@ -35,6 +37,6 @@ router.get('/github/callback',async (ctx)=>{
      // ctx.body = res.data
     ctx.cookies.set('user',res.data.login)
     ctx.cookies.set('icon',res.data.avatar_url)
-    ctx.redirect('http://localhost:8080/')
+    ctx.redirect(redirectPath)
 })
 module.exports=router
