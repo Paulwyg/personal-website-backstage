@@ -4,6 +4,7 @@ const app=new Koa()
 const index=require('./routes/index.js')
 const users=require('./routes/users.js')
 const articles=require('./routes/articles.js')
+const messages=require('./routes/message.js')
 // 跨域
 var cors = require('koa2-cors');
 app.use(cors());
@@ -15,6 +16,7 @@ app.use(bodyparser())
 app.use(index.routes())
 app.use(users.routes())
 app.use(articles.routes())
+app.use(messages.routes())
 app.use(static(__dirname+'/'));
 app.listen(3000,()=>{
     console.log('3000端口已启动')

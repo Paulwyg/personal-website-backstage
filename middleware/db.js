@@ -142,6 +142,41 @@ const commonts = sequelize.define(
     }
 );
 
+const messages=sequelize.define(
+    'message',
+    {
+        id: {
+            type: Sequelize.INTEGER,
+            primaryKey: true,
+            allowNull: true,
+            autoIncrement: true
+        },
+        name: {
+            type: Sequelize.STRING,
+            allowNull: false,
+        },
+        icon: {
+            type: Sequelize.STRING,
+            allowNull: false,
+        },
+        date: {
+            type: Sequelize.INTEGER,
+            allowNull: false,
+        },
+        content: {
+            type: Sequelize.STRING,
+            allowNull: false,
+        },
+        parent:{
+            type:Sequelize.INTEGER,
+            allowNull:true,
+        }
+    },
+    {
+        timestamps: false
+    }
+)
+
 // 根据 model自动创建表
 // sequelize
 //     .sync()
@@ -154,5 +189,6 @@ const commonts = sequelize.define(
 
 module.exports = {
     articles,
-    commonts
+    commonts,
+    messages
 };

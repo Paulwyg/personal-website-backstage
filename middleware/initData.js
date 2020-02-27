@@ -1,4 +1,4 @@
-const {articles,commonts} =require('./db.js')
+const {articles,commonts,messages} =require('./db.js')
 articles.sync({force:true}).then(()=>{
     return articles.create({
         id: 1,
@@ -19,6 +19,7 @@ articles.sync({force:true}).then(()=>{
 //         content: ''
 //     })
 // })
+
 commonts.sync({force:true}).then(()=>{
     return commonts.bulkCreate([{
         id:1,
@@ -35,6 +36,24 @@ commonts.sync({force:true}).then(()=>{
         icon:'https://avatars2.githubusercontent.com/u/14348558?v=4',
         date:(new Date(" 2019/09/25 08:00:20")).getTime()/1000,
         content:'回复评论',
+        parent:1,
+    }])
+})
+
+messages.sync({force:true}).then(()=>{
+    return messages.bulkCreate([{
+        id:1,
+        name:'Paulwyg',
+        icon:'https://avatars2.githubusercontent.com/u/14348558?v=4',
+        date:(new Date(" 2019/09/25 08:00:20")).getTime()/1000,
+        content:'留言，踩踩',
+        parent:null,
+    },{
+        id:2,
+        name:'Paulwyg',
+        icon:'https://avatars2.githubusercontent.com/u/14348558?v=4',
+        date:(new Date(" 2019/09/26 08:00:20")).getTime()/1000,
+        content:'欢迎欢迎',
         parent:1,
     }])
 })
